@@ -1,0 +1,44 @@
+{
+	"makefile.makefilePath": "./Makefile",
+	"C_Cpp.default.cppStandard": "c++17",
+	"C_Cpp.default.includePath": [
+		"${workspaceFolder}/**",
+		"/opt/intel/oneapi/tbb/2021.12/include",
+		"/opt/intel/oneapi/mpi/2021.12/include",
+		"/opt/intel/oneapi/mkl/2024.1/include",
+		"/opt/intel/oneapi/ippcp/2021.11/include",
+		"/opt/intel/oneapi/ipp/2021.11/include",
+		"/opt/intel/oneapi/dpl/2022.5/include",
+		"/opt/intel/oneapi/dpcpp-ct/2024.1/include",
+		"/opt/intel/oneapi/dnnl/2024.1/include",
+		"/opt/intel/oneapi/dev-utilities/2024.1/include",
+		"/opt/intel/oneapi/dal/2024.2/include/dal",
+		"/opt/intel/oneapi/compiler/2024.1/opt/oclfpga/include",
+		"/opt/intel/oneapi/ccl/2021.12/include",
+		"/opt/intel/oneapi/compiler/2024.1/opt/compiler/include",
+		"/usr/include/c++/14.2.1",
+		"/usr/include/c++/14.2.1/x86_64-pc-linux-gnu",
+		"/usr/include/c++/14.2.1/backward",
+		"/opt/intel/oneapi/compiler/2024.1/lib/clang/18/include",
+		"/usr/local/include",
+		"/usr/include"
+	],
+	"C_Cpp.default.defines": [],
+	"C_Cpp.default.compilerPath": "/opt/intel/oneapi/compiler/2024.1/bin/icpx",
+	"C_Cpp.default.compilerArgs": [
+		"-fsycl"
+	],
+	"C_Cpp.default.cStandard": "c17",
+	"makefile.launchConfigurations": [
+        {
+            "cwd": "/home/abdelilah/Projecta/HPGML",
+            "binaryPath": "./math",
+            "binaryArgs": []
+        }
+    ],
+    "makefile.buildLog": "",
+	"makefile.loggingLevel": "Normal",
+	"files.associations": {
+		"*.def": "cpp"
+	}
+}

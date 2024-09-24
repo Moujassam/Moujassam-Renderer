@@ -1,0 +1,32 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "build debug",
+			"command": "/opt/intel/oneapi/compiler/latest/bin/icpx",
+			"args": [
+				"-fsycl",
+				"-fdiagnostics-color=always",
+				"-g",
+				"-I${workspaceFolder}/include/",
+				"${workspaceFolder}/src/*.cpp",
+				"-L./",
+				"-l:libLLGL.so",
+				"-o",
+				"${workspaceFolder}/lib/bin/renderer"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}/lib/bin/"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: /opt/intel/oneapi/compiler/latest/bin/icpx"
+		}
+	]
+}
