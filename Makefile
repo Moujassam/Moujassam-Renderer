@@ -4,7 +4,7 @@ all: game
 game: init
 	icpx -fsycl -v -std=c++17 -I./include/ -I./include/LLGL/  -o game ./src/main.cpp -L./lib/bin/ -lLLGL
 
-init: ./lib/bin/libLLGL.so ./include/Moujassam-Math
+init: ./lib/bin/libLLGL.so ./lib/tinygltf ./include/Moujassam-Math
 	echo "init"
 
 ./include/Moujassam-Math:
@@ -21,3 +21,6 @@ init: ./lib/bin/libLLGL.so ./include/Moujassam-Math
 lib/LLGL:
 	mkdir -p ./lib
 	cd ./lib/ && curl --output LLGL.zip -L https://github.com/LukasBanana/LLGL/archive/refs/heads/master.zip && unzip LLGL.zip && rm LLGL.zip && mv LLGL-master LLGL
+
+lib/tinygltf:
+	cd ./lib && curl --output tinygltf.zip -L https://github.com/syoyo/tinygltf/archive/refs/heads/release.zip && unzip tinygltf.zip && rm tinygltf.zip && mv tinygltf-release tinygltf && cd ../include && mkdir -p tinygltf && cp ../lib/tinygltf/*.h ./tinygltf

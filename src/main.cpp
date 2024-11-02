@@ -1,4 +1,4 @@
-#include "LLGL.h"
+#include "LLGL/LLGL.h"
 #include "LLGL/Utils/VertexFormat.h"
 #include "Gauss/Gauss.h" // This is the path to the Gauss library
 
