@@ -2,9 +2,15 @@ all: game
 	echo "all"
 
 game: init
-	icpx -fsycl -v -std=c++17 -I./include/ -I./include/LLGL/  -o game ./src/main.cpp -L./lib/bin/ -lLLGL
+	c++  -std=c++2a -I./include/ -I./include/LLGL/  -o game ./src/main.cpp -L./lib/bin/ -lLLGL
 
-init: ./lib/bin/libLLGL.so ./lib/tinygltf ./include/Moujassam-Math
+game_macos: init_macos
+	c++  -std=c++2a -I./include/ -I./include/LLGL/  -o game ./src/main.cpp -L./lib/bin/ -lLLGL
+
+init: ./lib/bin/libLLGL.so ./include/Moujassam-Math
+	echo "init"
+
+init_macos: ./lib/bin/libLLGL.dylib ./include/Moujassam-Math
 	echo "init"
 
 ./include/Moujassam-Math:
@@ -18,9 +24,15 @@ init: ./lib/bin/libLLGL.so ./lib/tinygltf ./include/Moujassam-Math
 	cp -r ./lib/LLGL/include/LLGL ./include/
 	cp -r ./lib/LLGL/build_linux/GaussianLib/include/* ./include/
 
+./lib/bin/libLLGL.dylib: lib/LLGL
+	cd ./lib/LLGL/ &&  ./BuildMacOS.command
+	mkdir -p ./lib/bin
+	cp ./lib/LLGL/build_macos/build/libLLGL* ./lib/bin/
+	cp ./lib/LLGL/build_macos/build/libLLGL* ./
+	mkdir -p ./include
+	cp -r ./lib/LLGL/include/LLGL ./include/
+	cp -r ./lib/LLGL/build_macos/GaussianLib/include/* ./include/
+
 lib/LLGL:
 	mkdir -p ./lib
 	cd ./lib/ && curl --output LLGL.zip -L https://github.com/LukasBanana/LLGL/archive/refs/heads/master.zip && unzip LLGL.zip && rm LLGL.zip && mv LLGL-master LLGL
-
-lib/tinygltf:
-	cd ./lib && curl --output tinygltf.zip -L https://github.com/syoyo/tinygltf/archive/refs/heads/release.zip && unzip tinygltf.zip && rm tinygltf.zip && mv tinygltf-release tinygltf && cd ../include && mkdir -p tinygltf && cp ../lib/tinygltf/*.h ./tinygltf

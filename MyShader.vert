@@ -1,5 +1,5 @@
 // GLSL shader version 1.30 (for OpenGL 3.1)
-#version 130
+#version 410 core
 
 #ifdef GL_ES
 precision mediump float;

@@ -2,4 +2,5 @@ bin
 lib
 include/
 *.so
+*.dylib
 game

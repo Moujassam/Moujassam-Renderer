@@ -1,7 +1,7 @@
 #include "LLGL/LLGL.h"
 #include "LLGL/Utils/VertexFormat.h"
 #include "Gauss/Gauss.h" // This is the path to the Gauss library
-
+#include <iostream>
 struct MyVertex {
     float   position[2]; // 2D vector for X and Y coordinates
     uint8_t color[4];    // 4D vector for red, green, blue, and alpha components
@@ -15,11 +15,12 @@ int main()
 		LLGL::Report report;
 		myRenderer = LLGL::RenderSystem::Load(module, &report);
 		if (myRenderer == nullptr) {
-			LLGL::Log::Errorf("%s", report.GetText());
+			std::cout << report.GetText();
 		}
 	}
 	if (myRenderer == nullptr) {
 		/* Error: no suitable renderer found ... */
+		std::cout << "here\n";
 	}
 
 	LLGL::SwapChainDescriptor mySwapChainDesc;
@@ -56,9 +57,9 @@ int main()
 	for (LLGL::Shader* shader : { myVertexShader, myFragmentShader }) {
 		if (const LLGL::Report* report = shader->GetReport()) {
 			if (report->HasErrors()) {
-				LLGL::Log::Errorf("Shader compile errors:\n%s", report->GetText());
+				std::cout << ("Shader compile errors:\n") << report->GetText();
 			} else {
-				LLGL::Log::Printf("Shader compile warnings:\n%s", report->GetText());
+				std::cout << ("Shader compile warnings:\n") <<  report->GetText();
 			}
 		}
 	}
@@ -77,7 +78,7 @@ int main()
 	// Set window title (aka. caption) and show window
 	myWindow.SetTitle("Hello Triangle");
 	myWindow.Show();
-
+	std::cout << myWindow.GetPosition().x << " " << myWindow.GetPosition().y << std::endl;
 	// Process window events (such as user input)
 	while (myWindow.ProcessEvents()) {
 		myCmdBuffer->Begin();
@@ -90,5 +91,6 @@ int main()
 		myCmdBuffer->EndRenderPass();
 		myCmdBuffer->End();
 		mySwapChain->Present();
+		// std::cout << "here\n";
 	}
 }
